@@ -1,0 +1,132 @@
+#include <iostream>
+#include <stdio.h>
+#include <windows.h>
+#include <string>
+
+using namespace std;
+
+string nick, plec, haslo, jezyk;
+string rootpass="MOJE_SUPER_HASLO";
+int wiek, licznik=1;
+
+
+int main()
+{
+    cout << "Jaka jest twoja plec? Wybierz kobieta lub mezczyzna: "; // plec
+    cin >> plec;
+    if((plec=="kobieta")||(plec=="KOBIETA")||(plec=="Kobieta")||(plec=="k")) //kobita
+        cout << "Witaj milejdi! ";
+    else if((plec=="mezczyzna")||(plec=="MEZCZYZNA")||(plec=="Mezczyzna")||(plec=="m"))// gah
+        cout << "Witaj milordzie! ";
+    else
+    {
+        do
+        {
+        cout << "podaj poprawna plec: ";
+        cin >> plec;
+        } while ( not ( plec != "mezczyzna" ||  plec != "kobieta" ) );
+            if((plec=="kobieta")||(plec=="KOBIETA")||(plec=="Kobieta")||(plec=="k")) //kobita
+            cout << "Witaj milejdi! ";
+            else if((plec=="mezczyzna")||(plec=="MEZCZYZNA")||(plec=="Mezczyzna")||(plec=="m"))// gah
+            cout << "Witaj milordzie! ";
+
+                // tu zrobic petle jakas pojebana
+    }
+    cout << "Jak masz na imie?: ";
+    cin >> nick;
+    if ((nick=="admin")||(nick=="root")) // w przypadku proby wbitki do pana szefa admina he ;]
+    {
+        while (licznik < 4) // 3 proby
+        {
+            cout << "Podaj haslo: ";
+            cin >> haslo;
+            if (haslo==rootpass)
+            {
+                cout << "Prawidlowe haslo!" << endl; // jak sie wlamie paruwiarz jeden
+                break;
+            }
+            else
+            {
+                cout << "Zle haslo."; // jak da dupu
+                licznik++;
+            }
+        }
+        if (licznik == 4)
+        {
+            cout << "Pomyliles sie 3 razy, zamykam program"; // w przypadku gdy sie pomyli 3 razy
+            getchar(); getchar();
+            return 0;
+        }
+    }
+
+    cout << "Ile masz lat?: ";
+    cin >> wiek;
+    if (wiek<=15) // podwieki majo zakaz
+    {
+        cout << "Jestes za mlody/a na ta gre!" << endl;
+        cout << "Error code 3: Podwiek. Process terminated.";
+        getchar(); getchar();
+        return 3;
+    }
+    else if((wiek>=121)||(wiek<=0)) // jak ktos bedzie probowal z siebie gandalfa zrobic jakiego albo cos ;]]]
+        do
+        {
+        cout << "Podaj wiek z przedzialu od 0 do 120: ";
+        cin >> wiek;
+        } while ((wiek>=121)||(wiek<=0));
+
+        cout << "Twoje imie to " << nick <<", jestes " << plec << " w wieku " << wiek << " lat." << endl; // taki pseudo profil wywal informacje w twarz uzyszkodnikowi
+        cout << "Jakiego jezyka chcesz uzywac?(Dostepne PL/US/BR/GR): "; // TABLICE DWUWYMIAROWE
+        cin >> jezyk;
+            if((jezyk=="PL")||(jezyk=="pl")) //
+                {
+                    cout << "Witaj " << nick << "! Korzystasz z jezyka [PL]!";
+                    getchar(); getchar();
+                    return 0;
+                }
+            else if((jezyk=="US")||(jezyk=="us")||(jezyk=="BR")||(jezyk=="br"))
+                {
+                    cout << "Welcome " << nick << "! You are using [US/BR] language!";
+                    getchar(); getchar();
+                    return 0;
+                }
+            else if((jezyk=="GR")||(jezyk=="gr"))
+                {
+                    cout << "Willkommen " << nick << "! Sie verwenden Deutsch";
+                    getchar(); getchar();
+                    return 0;
+                }
+            else
+                {
+                    cout << "Unknown language, choose the proper one from following: PL/US/BR/GR. Decision?: ";
+                    cin >> jezyk;
+                        if((jezyk=="PL")||(jezyk=="pl"))
+                        {
+                        cout << "Witaj " << nick << "! Korzystasz z jezyka [PL]!";
+                        getchar(); getchar();
+                        return 0;
+                        }
+                        else if((jezyk=="US")||(jezyk=="us")||(jezyk=="BR")||(jezyk=="br"))
+                        {
+                        cout << "Welcome " << nick << "! You are using [US/BR] language!";
+                        getchar(); getchar();
+                        return 0;
+                        }
+                        else if((jezyk=="GR")||(jezyk=="gr"))
+                        {
+                        cout << "Willkommen " << nick << "! Sie verwenden Deutsch";
+                        getchar(); getchar();
+                        return 0;
+                        }
+                        else
+                        {
+                        cout << "Unknown language, terminating";
+                        getchar(); getchar();
+                        return 0;
+                        }
+                }
+    getchar(); getchar();
+    return 0;
+}
+
+
